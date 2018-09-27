@@ -2,6 +2,8 @@ from: "rhel7:7.5-released"
 name: "redhat-openjdk-18/openjdk18-openshift"
 
 packages:
+  install:
+  - openssl
   repositories:
     # Below two repositories are required to be defined to generate proper
     # configuration files for OSBS
