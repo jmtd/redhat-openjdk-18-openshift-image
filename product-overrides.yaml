@@ -17,6 +17,8 @@ envs:
   value: "1.6"
 
 packages:
+  install:
+  - openssl
   repositories:
     # Below two repositories are required to be defined to generate proper
     # configuration files for OSBS
