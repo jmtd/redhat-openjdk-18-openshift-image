@@ -2,7 +2,7 @@
 
 # XXX: this will be executed by the run harness instead of direct
 # eventually
-bash /opt/jboss/trust-ose-cert.sh 
+bash -x /opt/jboss/trust-ose-cert.sh
 
 /usr/bin/openssl verify \
     /tmp/testcert/testcert.pem

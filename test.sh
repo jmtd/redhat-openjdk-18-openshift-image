@@ -11,5 +11,3 @@ docker run --rm -ti \
     -v $(pwd)/runme.sh:/tmp/runme.sh \
     redhat-openjdk-18/openjdk18-openshift:1.6 \
     /tmp/runme.sh
-    #redhat-openjdk-18/openjdk18-openshift \
-    # jmtd \
