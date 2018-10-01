@@ -1,9 +1,8 @@
 #!/bin/sh
 
-cp /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt \
-	/etc/pki/ca-trust/source/anchors/
-stat /etc/pki/ca-trust/source/anchors/
-update-ca-trust
+# XXX: this will be executed by the run harness instead of direct
+# eventually
+bash /opt/jboss/trust-ose-cert.sh 
 
 /usr/bin/openssl verify \
     /tmp/testcert/testcert.pem
