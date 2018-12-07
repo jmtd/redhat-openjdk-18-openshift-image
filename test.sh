@@ -5,7 +5,7 @@ fi
 echo using uid $uid
 
 docker run --rm -ti \
-    -u $uid \
+    -u $uid:0 \
     -v $(pwd)/testcert/ca/ca.cert.pem:/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt \
     -v $(pwd)/testcert:/tmp/testcert:Z \
     -v $(pwd)/runme.sh:/tmp/runme.sh:Z \
