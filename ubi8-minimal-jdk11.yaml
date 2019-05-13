@@ -1,0 +1,44 @@
+# This is NOT an overrides file: it's a top-level YAML
+# image descriptor for cekit. This is an experimental
+# image.
+
+schema_version: 1
+
+from: "ubi8-minimal:latest"
+name: &name "ubi8-minimal/openjdk"
+version: &version "11.0"
+description: "UBI8 OpenJDK 11 runtime image"
+
+labels:
+- name: "com.redhat.component"
+  value: "openjdk-11-container"
+
+osbs:
+  configuration:
+    container:
+      compose:
+        pulp_repos: true
+        include_unpublished_pulp_repos: true
+  repository:
+    name: containers/openjdk
+    branch: openjdk-11-ubi8
+
+packages:
+  manager: microdnf
+  install:
+    - java-11-openjdk-headless
+  # XXX better value for pure UBI images?
+  content_sets:
+    x86_64:
+      - rhel-8-for-x86_64-baseos-rpms
+      - rhel-8-for-x86_64-appstream-rpms
+    ppc64le:
+      - rhel-8-for-ppc64le-baseos-rpms
+      - rhel-8-for-ppc64le-appstream-rpms
+
+help:
+  add: true
+
+ports:
+- value: 8080
+- value: 8443
