@@ -18,11 +18,14 @@ envs:
 
 modules:
   install:
-  - name: jboss.container.maven.35.bash
-    version: "3.5scl"
+  - name: jboss.container.maven.36.bash
+    version: "3.6scl"
 
 packages:
-  content_sets_file: content_sets.yml
+    repositories:
+        - name: foo
+          url:
+            repository: file:///home/ce/images/openjdk/foo.repo
 
 osbs:
   configuration:

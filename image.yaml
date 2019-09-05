@@ -26,17 +26,12 @@ ports:
 - value: 8080
 - value: 8443
 
-packages:
-  repositories:
-  - name: scl
-    rpm: centos-release-scl
-
 modules:
   repositories:
   - name: cct_module
     git:
-      url: https://github.com/jboss-openshift/cct_module.git
-      ref: master
+      url: https://github.com/jerboaa/cct_module.git
+      ref: maven-36
   install:
   - name: jboss.container.openjdk.jdk
     version: "8"
