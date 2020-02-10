@@ -70,10 +70,11 @@ osbs:
           - java-11-openj9
           - java-11-openj9-headless
           - java-11-openj9-devel
-        signing_intent: release
+        signing_intent: unsigned
         # used for inheritance of yum repos and ODCS composes from baseimage build
         inherit: true
         pulp_repos: true
   repository:
     name: containers/openj9
-    branch: openj9-11-rhel7
+    branch: private-jdowland-openj9-11-rhel7
+  koji_target: openj9-11-rhel7-containers-candidate

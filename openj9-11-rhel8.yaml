@@ -37,6 +37,7 @@ ports:
 - value: 8443
 
 packages:
+  content_sets_file: content_sets_rhel8.yml
   manager: dnf
 
 modules:
@@ -68,9 +69,10 @@ osbs:
           - java-11-openj9
           - java-11-openj9-headless
           - java-11-openj9-devel
-        signing_intent: release
+        signing_intent: unsigned
         # used for inheritance of yum repos and ODCS composes from baseimage build
         inherit: true
   repository:
     name: containers/openj9
-    branch: openj9-11-rhel8
+    branch: private-jdowland-openj9-11-rhel8
+  koji_target: openj9-11-rhel8-containers-candidate
