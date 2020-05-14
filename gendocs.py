@@ -5,6 +5,7 @@
 # then write them out to something useful
 
 import yaml
+import sys
 
 def getvars():
     y = yaml.safe_load(open("target/image.yaml","r"))
@@ -21,8 +22,8 @@ def getvars():
     es2.sort(key=(lambda h: h['name']))
     return es2
 
-def adocpreamble():
-    print("= Red Hat UBI OpenJDK Image")
+def adocpreamble(title):
+    print("= {}".format(title))
     print("Jonathan Dowland <jdowland@redhat.com>")
     print(":toc: left")
     print()
@@ -40,11 +41,11 @@ def adoctable(es,ty,test, field):
     print("|===")
     print()
 
-def main():
+def main(title):
     es = getvars()
-    adocpreamble()
+    adocpreamble(title)
     adoctable(es,"Informational",lambda h: 'value' in h, 'value')
     adoctable(es,"Configuration",lambda h: 'value' not in h, 'example')
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1])
