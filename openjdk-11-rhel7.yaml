@@ -65,4 +65,4 @@ osbs:
     branch: openjdk-11-rhel7
 
 packages:
-  content_sets_file: content_sets.yml
+  content_sets_file: content_sets_rhel7.yml
