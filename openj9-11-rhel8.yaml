@@ -50,8 +50,6 @@ modules:
     version: "openj9-11"
   - name: jboss.container.prometheus
     version: "7"
-  - name: jboss.container.jolokia
-    version: "7"
   - name: jboss.container.dnf
   - name: jboss.container.maven
     version: "8.2.3.6"
