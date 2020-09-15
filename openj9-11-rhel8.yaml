@@ -34,6 +34,7 @@ envs:
 ports:
 - value: 8080
 - value: 8443
+- value: 8778
 
 packages:
   manager: microdnf
@@ -49,8 +50,6 @@ modules:
   - name: jboss.container.openjdk.jdk
     version: "openj9-11"
   - name: jboss.container.prometheus
-    version: "7"
-  - name: jboss.container.jolokia
     version: "7"
   - name: jboss.container.dnf
   - name: jboss.container.maven
