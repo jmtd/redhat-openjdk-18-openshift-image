@@ -28,3 +28,5 @@ if grep -q "^$SECURERANDOM=.*" $JAVA_SECURITY_FILE; then
 else
     echo $SECURERANDOM=file:/dev/urandom >> $JAVA_SECURITY_FILE
 fi
+# OPENJDK-100: turn off negative DNS caching
+sed -i 's/\(networkaddress.cache.negative.ttl\)=[0-9]\+$/\1=0/' "$JAVA_SECURITY_FILE"

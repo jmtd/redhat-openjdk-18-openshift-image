@@ -20,4 +20,7 @@ alternatives --set javac java-1.8.0-openjdk.${_arch}
 alternatives --set java_sdk_openjdk java-1.8.0-openjdk.${_arch}
 alternatives --set jre_openjdk java-1.8.0-openjdk.${_arch}
 
-echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security
+JAVA_SECURITY_FILE=/usr/lib/jvm/java/jre/lib/security/java.security
+echo securerandom.source=file:/dev/urandom >> "$JAVA_SECURITY_FILE"
+# OPENJDK-100: turn off negative DNS caching
+sed -i 's/\(networkaddress.cache.negative.ttl\)=[0-9]\+$/\1=0/' "$JAVA_SECURITY_FILE"

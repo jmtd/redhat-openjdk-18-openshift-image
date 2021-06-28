@@ -18,3 +18,7 @@ popd
 # Set this JDK as the alternative in use
 _arch="$(uname -i)"
 alternatives --set java java-11-openjdk.${_arch}
+
+# OPENJDK-100: turn off negative DNS caching
+javasecurity="${JAVA_HOME}/conf/security/java.security"
+sed -i 's/\(networkaddress.cache.negative.ttl\)=[0-9]\+$/\1=0/' "$javasecurity"
