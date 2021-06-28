@@ -18,9 +18,17 @@ mkdir -p /deployments/data \
  && chown -R jboss:root /deployments/data
 
 # OPENJDK-100: turn off negative DNS caching
+# TODO: this probably should go to some other cekit module
 if [ -w ${JAVA_HOME}/jre/lib/security/java.security ]; then
     # JDK8 location
     javasecurity="${JAVA_HOME}/jre/lib/security/java.security"
+
+elif [ -w ${JAVA_HOME}/lib/security/java.security ]; then
+    # JDK8-runtime location
+    javasecurity="${JAVA_HOME}/lib/security/java.security"
+
+    # this file does not exist in java-11-openjdk (runtime)
+
 else
     # JDK11 location
     javasecurity="${JAVA_HOME}/conf/security/java.security"
