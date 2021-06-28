@@ -45,3 +45,7 @@ help:
 
 packages:
   manager: microdnf
+
+run:
+  cmd:
+  - "/opt/jboss/container/java/run/run-java.sh"
