@@ -217,18 +217,10 @@ get_exec_args() {
   fi
 }
 
-# Ensure that the running UID has the "jboss" passwd metadata
-# XXX: Maybe we should make this an entrypoint for the image?
-function configure_passwd() {
-  sed "/^jboss/s/[^:]*/$(id -u)/3" /etc/passwd > "$HOME/passwd"
-}
-
 # Start JVM
 startup() {
   # Initialize environment
   load_env
-
-  configure_passwd
 
   local args
   cd ${JAVA_APP_DIR}
@@ -237,6 +229,14 @@ startup() {
   else
      args="-jar ${JAVA_APP_JAR}"
   fi
+
+  for hook in "$JBOSS_CONTAINER_JAVA_RUN_MODULE/hooks.d/"*; do
+      if [ ! -f "$hook"]; then
+          continue
+      fi
+      source "$hook"
+  done
+
   log_info "exec $(get_exec_args) java $(get_java_options) -cp \"$(get_classpath)\" ${args} $* ${JAVA_ARGS}"
   exec $(get_exec_args) java $(get_java_options) -cp "$(get_classpath)" ${args} $*
 }
