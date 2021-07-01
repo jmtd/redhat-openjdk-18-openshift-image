@@ -1,0 +1,23 @@
+schema_version: 1
+name: OPENJDK-312-nss-wrapper
+version: '1.0'
+description: ^
+    Install and configure nss wrapper to reference /home/jboss/passwd.
+    Update jboss user's UID to the current running UID when run-java.sh is invoked.
+    Workaround to support OCP <4.2 (including OCP 3.11) after fixing OPENJDK-312
+    (https://issues.redhat.com/browse/OPENJDK-312)
+
+envs:
+- name: LD_PRELOAD
+  value: libnss_wrapper.so
+- name: NSS_WRAPPER_PASSWD
+  value: /home/jboss/passwd
+- name: NSS_WRAPPER_GROUP
+  value: /etc/group
+
+execute:
+- script: configure.sh
+
+packages:
+  install:
+  - nss_wrapper

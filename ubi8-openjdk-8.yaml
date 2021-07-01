@@ -47,6 +47,7 @@ modules:
   - name: jboss.container.maven
     version: "8.2.3.6.8"
   - name: jboss.container.java.s2i.bash
+  - name: OPENJDK-312-nss-wrapper
 
 help:
   add: true
